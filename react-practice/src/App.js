@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import './style.css';
 
 import { Counter } from "./Counter";
@@ -94,61 +94,30 @@ const INITIAL_COUNT = 0;
 const INITIAL_NAME  = "JavaScript";
 
 const SampleComponent = () => {
-  const [count, setCount] = useState(INITIAL_COUNT);
-  const [name, setName] = useState(INITIAL_NAME);
+  const [count, setCount] = useState(INITIAL_COUNT)
   
-  const countIncrement = () => setCount((prevCount) => prevCount + 1)
-  const countDecrement = () => setCount((prevCount) => prevCount -1)
-  const countReset = () => setCount(INITIAL_COUNT);
+  const callbackFunction = () => {
+    document.title = `${count}回クリックされました`
+  }
   
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
+  useEffect(callbackFunction,[count])
+  const countIncrement = () => {
+    setCount((prevCount) => prevCount + 1)
+  }
+  
+  const countReset = () => {
+    setCount(INITIAL_COUNT)
+  }
   
   return (
     <div className="App">
-      <p>
-        現在のカウント数:<b>{count}</b>
-        countの初期値: <b>{INITIAL_COUNT}</b>
-      </p>
-      <button onClick={countIncrement}>increment</button>
-      <button onClick={countDecrement}>decrement</button>
-      <button onClick={countReset}>reset</button>
-      
-      <p>
-        Hello,<b>{name}!!</b>
-        <br />
-        nameの初期値：<b>{INITIAL_NAME}</b>
-      </p>
-      <input type="text" onChange={handleChangeName} />
+      <p>現在のカウント数：{count}</p>
+      <button onClick={countIncrement}>+1 ボタン</button>
+      <button onClick={countReset}>リセット</button>
     </div>
   )
 }
 
 export default function App() {
-  const [count, setCount] = useState(INITIAL_COUNT);
-  const [name, setName] = useState(INITIAL_NAME);
-  const countIncrement = () => setCount((prevCount) => prevCount + 1)
-  const countDecrement = () => setCount((prevCount) => prevCount -1)
-  const countReset = () => setCount(INITIAL_COUNT);
-  const handleChangeName = (e) => {
-    setName(e.target.value);
-  };
-  
-  return (
-    <div className="App">
-      <Counter
-        count={count}
-        countIncrement={countIncrement}
-        countDecrement={countDecrement}
-        countReset={countReset}
-        initialCount={INITIAL_COUNT}
-      />
-      <Hello
-        name={name}
-        handleChangeName={handleChangeName}
-        initialName={INITIAL_NAME}
-      />
-    </div>
-  )
+  return <SampleComponent />
 };
