@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef} from "react";
 import './style.css';
 
 import { Counter } from "./Counter";
@@ -118,6 +118,21 @@ const SampleComponent = () => {
   )
 }
 
+const SampleComponent2 = () => {
+  const inputRefObject = useRef(null);
+  
+  const handleClick = () => {
+    inputRefObject.current.focus();
+  }
+  
+  return (
+    <div className="App">
+      <input type="text" ref={inputRefObject} />
+      <button onClick={handleClick}>入力エリアをフォーカス</button>
+    </div>
+  )
+}
+
 export default function App() {
-  return <SampleComponent />
+  return <SampleComponent2 />
 };
