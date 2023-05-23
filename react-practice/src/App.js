@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const LogoutButton = (props) => (
+  <button onClick={props.toggleIsLoggedIn}>ログアウト</button>
+);
+
+const LoginButton = (props) => (
+  <button onClick={props.toggleIsLoggedIn}>ログイン</button>
+);
+
+const LoginControl = () => {
+  const [isLoggedIn, setIsLoggedInState] = useState(false);
+  
+  const toggleIsLoggedIn = () => {
+    setIsLoggedInState(!isLoggedIn);
+  }
+  
+  if (isLoggedIn) {
+    return <LogoutButton toggleIsLoggedIn={toggleIsLoggedIn} />;
+  }
+  
+  return <LoginButton toggleIsLoggedIn={toggleIsLoggedIn}></LoginButton>;
 }
 
-export default App;
+export default function App() {
+  return <LoginControl />;
+};
