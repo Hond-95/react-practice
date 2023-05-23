@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import React, { useState, useEffect, useRef} from "react";
+import React, {useState, useEffect, useRef, useContext, createContext} from "react";
 import './style.css';
 
 import { Counter } from "./Counter";
@@ -133,6 +133,22 @@ const SampleComponent2 = () => {
   )
 }
 
+const SampleContextObject = createContext();
+
+const ConsumerComponent = () => {
+  const messageText = useContext(SampleContextObject)
+  
+  console.log(messageText);
+  
+  return <p>{messageText}</p>
+}
+
+const message = "I Love React!!";
+
 export default function App() {
-  return <SampleComponent2 />
+  return (
+    <SampleContextObject.Provider value={message}>
+      <ConsumerComponent />
+    </SampleContextObject.Provider>
+  )
 };
