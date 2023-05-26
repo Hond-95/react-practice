@@ -1,5 +1,6 @@
 import '../App.css';
 import { useTodo } from "../hooks/useTodo"
+import React, { useRef } from 'react'
 
 const TodoTitle = ({ title, as }) => {
   if (as === "h1") return <h1>{title}</h1>
@@ -31,8 +32,26 @@ const TodoList = ({todoList}) => {
   )
 }
 
+const TodoAdd = ({ inputElement, handleAddTodoListItem}) => {
+  return (
+    <>
+      <textarea ref={inputElement} />
+      <button onClick={handleAddTodoListItem}>+ TODOを追加</button>
+    </>
+  )
+}
+
 function App() {
-  const { todoList } = useTodo();
+  const { todoList, addTodoListItem } = useTodo();
+  
+  const inputElement = useRef(null);
+  
+  const handleAddTodoListItem = () => {
+    if (inputElement.current.value === "") return;
+    
+    addTodoListItem(inputElement.current.value);
+    inputElement.current.value = "";
+  }
   
   console.log("TODOリスト：", todoList);
   
@@ -54,9 +73,7 @@ function App() {
     <>
       <TodoTitle title="TODO進捗管理" as="h1" />
       
-      <textarea />
-      
-      <button>+ TODOを追加</button>
+      <TodoAdd inputElement={inputElement} handleAddTodoListItem={handleAddTodoListItem} />
       
       <TodoTitle title="未完了TODOリスト" as="h2" />
       <TodoList todoList={inCompletedList} />
