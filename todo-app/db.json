@@ -1,38 +1,28 @@
 {
   "todos": [
     {
-      "id": 1,
-      "content": "Create React appをインストールする",
-      "done": true
-    },
-    {
-      "id": 2,
-      "content": "JSON Server仮のAPIを作成する",
-      "done": false
-    },
-    {
-      "id": 3,
-      "content": "Chakra UIをインストールする",
-      "done": false
-    },
-    {
       "content": "hogeee",
       "id": "01H194X8GTHTWJDK6KFDZS2J6M",
-      "done": false
+      "done": true
     },
     {
       "content": "test\n",
       "id": "01H194XCWEEMGHCFDWPH78GK4P",
-      "done": false
+      "done": true
     },
     {
       "content": "aa",
       "id": "01H195ZNNS97WBQHJPBS4E7WX9",
+      "done": true
+    },
+    {
+      "content": "26516169",
+      "id": "01H1P1HSYJ8EJAP4121ZE4QAW4",
       "done": false
     },
     {
-      "content": "aaa",
-      "id": "01H1ARE9PYMMSTE39AV9586DRX",
+      "content": "a",
+      "id": "01H1P266FCTN7GD8NRDC6GHG8T",
       "done": false
     }
   ]
