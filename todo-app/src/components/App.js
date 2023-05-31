@@ -5,6 +5,9 @@ import { TodoTitle } from "./TodoTitle";
 import { TodoAdd } from "./TodoAdd";
 import { TodoList } from "./TodoList";
 
+import { Container } from "@chakra-ui/react";
+import { AddIcon } from "@chakra-ui/icons";
+
 function App() {
   const { todoList,
           addTodoListItem,
@@ -38,11 +41,17 @@ function App() {
   
   
   return (
-    <>
-      <TodoTitle title="TODO進捗管理" as="h1" />
+    <Container centerContent p={{base: "4", md: "6"}} maxWidth="3xl" >
+      <TodoTitle
+        title="TODO進捗管理"
+        as="h1"
+        fontSize={{base: "2xl", md: "3xl"}}
+      />
       
       <TodoAdd
-        buttonText="+ TODOを追加"
+        placeholder="ADD TODO"
+        leftIcon={<AddIcon />}
+        buttonText="TODOを追加"
         inputElement={inputElement}
         handleAddTodoListItem={handleAddTodoListItem}
       />
@@ -53,6 +62,7 @@ function App() {
         deleteTodoListItem={deleteTodoListItem}
         title="未完了TODOリスト"
         as="h2"
+        fontSize={{base: "2xl", md: "2xl"}}
       />
 
       <TodoList
@@ -61,8 +71,9 @@ function App() {
         deleteTodoListItem={deleteTodoListItem}
         title="完了TODOリスト"
         as="h2"
+        fontSize={{base: "2xl", md: "2xl"}}
       />
-    </>
+    </Container>
   );
 }
 
